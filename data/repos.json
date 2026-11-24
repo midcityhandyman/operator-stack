@@ -1,0 +1,210 @@
+{
+  "hub": "operator-stack",
+  "repos": [
+    {
+      "name": "agent-memory-supabase",
+      "area": "Memory",
+      "summary": "Durable facts and session history in Postgres that every agent session reads and writes"
+    },
+    {
+      "name": "brain-boot-mcp",
+      "area": "Memory",
+      "summary": "Tool server that hands a new session its boot pack of rules, corrections and due items"
+    },
+    {
+      "name": "correction-distiller",
+      "area": "Memory",
+      "summary": "Turns operator corrections into short standing rules so a mistake is made once"
+    },
+    {
+      "name": "send-gate",
+      "area": "Rules",
+      "summary": "Checks every outbound message for consent, rate and approval before it leaves"
+    },
+    {
+      "name": "sms-approval-desk",
+      "area": "Rules",
+      "summary": "Holds risky actions in a queue until the operator approves or rejects by text"
+    },
+    {
+      "name": "commit-trailer-guard",
+      "area": "Rules",
+      "summary": "Rejects commits that lack a required provenance trailer line"
+    },
+    {
+      "name": "pii-screen",
+      "area": "Rules",
+      "summary": "Screens text for phone numbers and emails before it reaches an outside model"
+    },
+    {
+      "name": "claude-code-ops-kit",
+      "area": "Rules",
+      "summary": "Hooks, settings and checklists that keep coding agent sessions inside the rules"
+    },
+    {
+      "name": "job-watchdog",
+      "area": "Jobs",
+      "summary": "Notices scheduled jobs that stopped reporting and raises one alert, not fifty"
+    },
+    {
+      "name": "stall-board",
+      "area": "Jobs",
+      "summary": "Lists work that has sat too long without a next step, oldest first"
+    },
+    {
+      "name": "webhook-reliability-kit",
+      "area": "Jobs",
+      "summary": "Signature checks, deduplication, retries and a dead letter queue for webhooks"
+    },
+    {
+      "name": "n8n-workflow-library",
+      "area": "Jobs",
+      "summary": "Reusable workflow definitions for common small business automations"
+    },
+    {
+      "name": "ai-receptionist-starter",
+      "area": "Bots",
+      "summary": "Answers inbound contacts, collects the details and hands off to a person"
+    },
+    {
+      "name": "missed-call-textback",
+      "area": "Bots",
+      "summary": "Replies to a missed call by text within a minute, inside quiet hours rules"
+    },
+    {
+      "name": "speed-to-lead",
+      "area": "Bots",
+      "summary": "Gets a first response to a new lead in minutes and tracks the follow ups"
+    },
+    {
+      "name": "topic-per-customer-bot",
+      "area": "Bots",
+      "summary": "Chat bot that keeps one thread per customer so context never mixes"
+    },
+    {
+      "name": "review-request-engine",
+      "area": "Bots",
+      "summary": "Asks for a review after a finished job, once, at a sensible time"
+    },
+    {
+      "name": "supabase-rls-cookbook",
+      "area": "Database",
+      "summary": "Row level security policies and tests for a Postgres schema shared by two tenants"
+    },
+    {
+      "name": "encrypted-supabase-backups",
+      "area": "Database",
+      "summary": "Scheduled database dumps, encrypted before they leave the machine"
+    },
+    {
+      "name": "crm-migration-kit",
+      "area": "Database",
+      "summary": "Maps, cleans and deduplicates contacts when moving between CRMs, with a dry run"
+    },
+    {
+      "name": "agent-dispatcher",
+      "area": "Agents",
+      "summary": "Splits a goal into tasks, fans them out to workers and verifies what comes back"
+    },
+    {
+      "name": "agent-eval-harness",
+      "area": "Agents",
+      "summary": "Scores agent output against fixed cases so changes can be compared"
+    },
+    {
+      "name": "cheap-first-router",
+      "area": "Agents",
+      "summary": "Sends routine work to a small model and judgment calls to a strong one"
+    },
+    {
+      "name": "prompt-cache-cost-lab",
+      "area": "Agents",
+      "summary": "Measures what prompt caching saves across different prompt layouts"
+    },
+    {
+      "name": "codebase-scanner-cli",
+      "area": "Agents",
+      "summary": "Walks a repository and reports structure, risks and stale spots"
+    },
+    {
+      "name": "field-service-mcp",
+      "area": "Agents",
+      "summary": "Tool server that exposes jobs, customers and schedules to an agent, on mock data"
+    },
+    {
+      "name": "trades-skill-pack",
+      "area": "Agents",
+      "summary": "Packaged agent skills for common tasks in the home service trades"
+    },
+    {
+      "name": "same-automation-four-ways",
+      "area": "Agents",
+      "summary": "One automation built four ways to compare effort, cost and upkeep"
+    },
+    {
+      "name": "remodel-estimator",
+      "area": "Operations",
+      "summary": "Builds a line item estimate from a scope description and a price book"
+    },
+    {
+      "name": "scope-of-work-generator",
+      "area": "Operations",
+      "summary": "Turns job notes into a clear scope of work with inclusions and exclusions"
+    },
+    {
+      "name": "change-order-tracker",
+      "area": "Operations",
+      "summary": "Records changes to an agreed scope with price, approval and running total"
+    },
+    {
+      "name": "job-costing",
+      "area": "Operations",
+      "summary": "Compares estimated and actual labor and material cost for each job"
+    },
+    {
+      "name": "photo-to-punch-list",
+      "area": "Operations",
+      "summary": "Turns site photos and notes into a punch list, with a mock vision step"
+    },
+    {
+      "name": "crew-onboarding-intake",
+      "area": "Operations",
+      "summary": "Collects and checks what a new crew member or subcontractor must provide"
+    },
+    {
+      "name": "owner-dashboard",
+      "area": "Operations",
+      "summary": "One page of the numbers an owner checks each morning"
+    },
+    {
+      "name": "clickup-dry-run",
+      "area": "Operations",
+      "summary": "Previews task changes as a diff before anything is written to the task tool"
+    },
+    {
+      "name": "ghl-home-services-blueprint",
+      "area": "Operations",
+      "summary": "Pipeline, field and automation layout for a home services CRM account"
+    },
+    {
+      "name": "fastapi-ops-starter",
+      "area": "Operations",
+      "summary": "Small API service skeleton with health checks, auth stub and tests"
+    },
+    {
+      "name": "brrr-deal-analyzer",
+      "area": "Operations",
+      "summary": "Runs the numbers on a buy, rehab, rent, refinance property deal"
+    },
+    {
+      "name": "reddit-pain-miner",
+      "area": "Operations",
+      "summary": "Mines forum threads for recurring customer pain points, on canned data"
+    },
+    {
+      "name": "book-pipeline",
+      "area": "Operations",
+      "summary": "Moves a long document from outline to draft to edit in tracked stages"
+    }
+  ]
+}

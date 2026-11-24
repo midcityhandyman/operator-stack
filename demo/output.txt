@@ -1,0 +1,21 @@
+1. This repo
+------------
+  OK files=7 links=31 anchors=11 external=0 mermaid=7 repos=41 issues=0
+
+2. Throwaway tree with seven planted faults
+-------------------------------------------
+  README.md:3: [link-missing] link target does not exist: docs/nope.md
+  README.md:5: [index-row] 'beta-repo' is in data/repos.json but not in the README table
+  docs/guide.md:5: [anchor-missing] no heading for anchor: #teardown
+  docs/guide.md:6: [repo-ref] 'gamma-repo' looks like a repo name but is not in data/repos.json
+  docs/guide.md:10: [mermaid] unclosed '['
+  docs/guide.md:14: [mermaid] sequence diagram has no messages
+  docs/orphan.md:1: [orphan] docs page is not linked from any other page
+  FAIL files=3 links=2 anchors=2 external=0 mermaid=2 repos=2 issues=7
+
+3. Same tree after fixes and --write-index
+------------------------------------------
+  OK files=2 links=1 anchors=1 external=0 mermaid=1 repos=2 issues=0
+
+Fault kinds caught in step 2: anchor-missing, index-row, link-missing, mermaid, orphan, repo-ref
+Demo result: PASS
