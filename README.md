@@ -165,7 +165,7 @@ index.
 | 9 | [`job-watchdog`](https://github.com/midcityhandyman/job-watchdog) | Jobs | Watchdog for scheduled jobs: alerts on failure and on silence past the expected interval |
 | 10 | [`stall-board`](https://github.com/midcityhandyman/stall-board) | Jobs | Work-in-flight board for a fleet of agents: flags idle, blocked and waiting-on-human tasks |
 | 11 | [`webhook-reliability-kit`](https://github.com/midcityhandyman/webhook-reliability-kit) | Jobs | Idempotency keys, outbox drain with backoff, dead letters and replay, proven by a chaos test |
-| 12 | [`n8n-workflow-library`](https://github.com/midcityhandyman/n8n-workflow-library) | Jobs | Ten n8n workflows for service businesses, each with error and dead-letter paths |
+| 12 | [`n8n-workflow-library`](https://github.com/midcityhandyman/n8n-workflow-library) | Jobs | Eleven n8n workflows for service businesses, each with error and dead-letter paths |
 | 13 | [`ai-receptionist-starter`](https://github.com/midcityhandyman/ai-receptionist-starter) | Bots | Voice AI receptionist for home services: qualify, book, hand off, after-hours rules, call simulator |
 | 14 | [`missed-call-textback`](https://github.com/midcityhandyman/missed-call-textback) | Bots | One text back on a missed call, with quiet hours, opt-out and no double texting |
 | 15 | [`speed-to-lead`](https://github.com/midcityhandyman/speed-to-lead) | Bots | Lead intake that validates, scores, routes and replies against a 60 second target, with a metrics page |

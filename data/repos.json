@@ -60,7 +60,7 @@
     {
       "name": "n8n-workflow-library",
       "area": "Jobs",
-      "summary": "Ten n8n workflows for service businesses, each with error and dead-letter paths"
+      "summary": "Eleven n8n workflows for service businesses, each with error and dead-letter paths"
     },
     {
       "name": "ai-receptionist-starter",
