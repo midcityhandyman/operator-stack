@@ -280,10 +280,19 @@ def check_siblings(root: Path, siblings: Path, report: Report) -> None:
                                    f"folder '{n}' exists beside the hub but is not in the index"))
 
 
-def render_index(repos: list) -> str:
+def base_url(root: Path) -> str:
+    """Optional "base_url" in data/repos.json; when set, index names link to base_url/name."""
+    path = root / "data" / "repos.json"
+    if path.exists():
+        return (json.loads(path.read_text(encoding="utf-8")).get("base_url") or "").rstrip("/")
+    return ""
+
+
+def render_index(repos: list, base: str = "") -> str:
     rows = ["| # | Folder | Area | What it shows |", "|---|--------|------|---------------|"]
     for i, r in enumerate(repos, 1):
-        rows.append(f"| {i} | `{r['name']}` | {r['area']} | {r['summary']} |")
+        name = f"[`{r['name']}`]({base}/{r['name']})" if base else f"`{r['name']}`"
+        rows.append(f"| {i} | {name} | {r['area']} | {r['summary']} |")
     return "\n".join(rows)
 
 
@@ -312,9 +321,14 @@ def check_index(root: Path, readme_text: str, report: Report) -> None:
         add(1, "index-missing", "README has no repo index markers")
         return
     line, body = section
-    if "://" in body or "](" in body:
-        add(line, "index-url", "repo index must use plain folder names, no links or URLs")
-    listed = re.findall(r"^\|\s*\d+\s*\|\s*`([^`]+)`", body, flags=re.M)
+    base = base_url(root)
+    rest = body
+    if base:
+        for n in names:
+            rest = rest.replace(f"]({base}/{n})", "")
+    if "://" in rest or "](" in rest:
+        add(line, "index-url", "repo index may only link names to base_url from data/repos.json")
+    listed = re.findall(r"^\|\s*\d+\s*\|\s*\[?`([^`]+)`", body, flags=re.M)
     for n in names:
         if n not in listed:
             add(line, "index-row", f"'{n}' is in data/repos.json but not in the README table")
@@ -400,7 +414,7 @@ def write_index(root: Path) -> bool:
     a, b = text.find(INDEX_START), text.find(INDEX_END)
     if a < 0 or b < a:
         return False
-    new = text[:a + len(INDEX_START)] + "\n" + render_index(load_repos(root)) + "\n" + text[b:]
+    new = text[:a + len(INDEX_START)] + "\n" + render_index(load_repos(root), base_url(root)) + "\n" + text[b:]
     readme.write_text(new, encoding="utf-8", newline="\n")
     return True
 

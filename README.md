@@ -110,8 +110,8 @@ platform and a test compares the two.
 
 ## Repo index
 
-The stack is split into 41 small repos, listed here by folder name. Names are
-relative on purpose; links are added at publication. The table is generated
+The stack is split into 41 small repos, listed here by name. Each name
+links to its public repository. The table is generated
 from [data/repos.json](data/repos.json) with
 `python scripts/validate.py --write-index`, and the validator fails if the two
 drift apart, or if a page cites a backticked repo name that is not in the
@@ -120,47 +120,47 @@ index.
 <!-- repo-index:start -->
 | # | Folder | Area | What it shows |
 |---|--------|------|---------------|
-| 1 | `agent-memory-supabase` | Memory | Durable facts and session history in Postgres that every agent session reads and writes |
-| 2 | `brain-boot-mcp` | Memory | Tool server that hands a new session its boot pack of rules, corrections and due items |
-| 3 | `correction-distiller` | Memory | Turns operator corrections into short standing rules so a mistake is made once |
-| 4 | `send-gate` | Rules | Checks every outbound message for consent, rate and approval before it leaves |
-| 5 | `sms-approval-desk` | Rules | Holds risky actions in a queue until the operator approves or rejects by text |
-| 6 | `commit-trailer-guard` | Rules | Rejects commits that lack a required provenance trailer line |
-| 7 | `pii-screen` | Rules | Screens text for phone numbers and emails before it reaches an outside model |
-| 8 | `claude-code-ops-kit` | Rules | Hooks, settings and checklists that keep coding agent sessions inside the rules |
-| 9 | `job-watchdog` | Jobs | Notices scheduled jobs that stopped reporting and raises one alert, not fifty |
-| 10 | `stall-board` | Jobs | Lists work that has sat too long without a next step, oldest first |
-| 11 | `webhook-reliability-kit` | Jobs | Signature checks, deduplication, retries and a dead letter queue for webhooks |
-| 12 | `n8n-workflow-library` | Jobs | Reusable workflow definitions for common small business automations |
-| 13 | `ai-receptionist-starter` | Bots | Answers inbound contacts, collects the details and hands off to a person |
-| 14 | `missed-call-textback` | Bots | Replies to a missed call by text within a minute, inside quiet hours rules |
-| 15 | `speed-to-lead` | Bots | Gets a first response to a new lead in minutes and tracks the follow ups |
-| 16 | `topic-per-customer-bot` | Bots | Chat bot that keeps one thread per customer so context never mixes |
-| 17 | `review-request-engine` | Bots | Asks for a review after a finished job, once, at a sensible time |
-| 18 | `supabase-rls-cookbook` | Database | Row level security policies and tests for a Postgres schema shared by two tenants |
-| 19 | `encrypted-supabase-backups` | Database | Scheduled database dumps, encrypted before they leave the machine |
-| 20 | `crm-migration-kit` | Database | Maps, cleans and deduplicates contacts when moving between CRMs, with a dry run |
-| 21 | `agent-dispatcher` | Agents | Splits a goal into tasks, fans them out to workers and verifies what comes back |
-| 22 | `agent-eval-harness` | Agents | Scores agent output against fixed cases so changes can be compared |
-| 23 | `cheap-first-router` | Agents | Sends routine work to a small model and judgment calls to a strong one |
-| 24 | `prompt-cache-cost-lab` | Agents | Measures what prompt caching saves across different prompt layouts |
-| 25 | `codebase-scanner-cli` | Agents | Walks a repository and reports structure, risks and stale spots |
-| 26 | `field-service-mcp` | Agents | Tool server that exposes jobs, customers and schedules to an agent, on mock data |
-| 27 | `trades-skill-pack` | Agents | Packaged agent skills for common tasks in the home service trades |
-| 28 | `same-automation-four-ways` | Agents | One automation built four ways to compare effort, cost and upkeep |
-| 29 | `remodel-estimator` | Operations | Builds a line item estimate from a scope description and a price book |
-| 30 | `scope-of-work-generator` | Operations | Turns job notes into a clear scope of work with inclusions and exclusions |
-| 31 | `change-order-tracker` | Operations | Records changes to an agreed scope with price, approval and running total |
-| 32 | `job-costing` | Operations | Compares estimated and actual labor and material cost for each job |
-| 33 | `photo-to-punch-list` | Operations | Turns site photos and notes into a punch list, with a mock vision step |
-| 34 | `crew-onboarding-intake` | Operations | Collects and checks what a new crew member or subcontractor must provide |
-| 35 | `owner-dashboard` | Operations | One page of the numbers an owner checks each morning |
-| 36 | `clickup-dry-run` | Operations | Previews task changes as a diff before anything is written to the task tool |
-| 37 | `ghl-home-services-blueprint` | Operations | Pipeline, field and automation layout for a home services CRM account |
-| 38 | `fastapi-ops-starter` | Operations | Small API service skeleton with health checks, auth stub and tests |
-| 39 | `brrr-deal-analyzer` | Operations | Runs the numbers on a buy, rehab, rent, refinance property deal |
-| 40 | `reddit-pain-miner` | Operations | Mines forum threads for recurring customer pain points, on canned data |
-| 41 | `book-pipeline` | Operations | Moves a long document from outline to draft to edit in tracked stages |
+| 1 | [`agent-memory-supabase`](https://github.com/midcityhandyman/agent-memory-supabase) | Memory | Layered agent memory on Postgres: hybrid text and vector recall re-ranked by recorded outcomes |
+| 2 | [`brain-boot-mcp`](https://github.com/midcityhandyman/brain-boot-mcp) | Memory | MCP server that hands an agent its standing rules, recent corrections and due items at session start |
+| 3 | [`correction-distiller`](https://github.com/midcityhandyman/correction-distiller) | Memory | Turns human corrections of an agent into proposed rules that wait in an approval queue |
+| 4 | [`send-gate`](https://github.com/midcityhandyman/send-gate) | Rules | Human approval gate for agent outbound messages: rule checks, exact-text approval, send, read-back, audit |
+| 5 | [`sms-approval-desk`](https://github.com/midcityhandyman/sms-approval-desk) | Rules | Mini app where staff approve, edit or reject each outbound text before it sends |
+| 6 | [`commit-trailer-guard`](https://github.com/midcityhandyman/commit-trailer-guard) | Rules | GitHub Action that fails a pull request when a commit lacks a required trailer |
+| 7 | [`pii-screen`](https://github.com/midcityhandyman/pii-screen) | Rules | Screens text for phones, emails, addresses and roster names before it reaches a third-party model |
+| 8 | [`claude-code-ops-kit`](https://github.com/midcityhandyman/claude-code-ops-kit) | Rules | Claude Code plugin: definition-of-done Stop hook, scope checklist and a wrap-up skill |
+| 9 | [`job-watchdog`](https://github.com/midcityhandyman/job-watchdog) | Jobs | Watchdog for scheduled jobs: alerts on failure and on silence past the expected interval |
+| 10 | [`stall-board`](https://github.com/midcityhandyman/stall-board) | Jobs | Work-in-flight board for a fleet of agents: flags idle, blocked and waiting-on-human tasks |
+| 11 | [`webhook-reliability-kit`](https://github.com/midcityhandyman/webhook-reliability-kit) | Jobs | Idempotency keys, outbox drain with backoff, dead letters and replay, proven by a chaos test |
+| 12 | [`n8n-workflow-library`](https://github.com/midcityhandyman/n8n-workflow-library) | Jobs | Ten production-grade n8n workflows for service businesses, each with error and dead-letter paths |
+| 13 | [`ai-receptionist-starter`](https://github.com/midcityhandyman/ai-receptionist-starter) | Bots | Voice AI receptionist for home services: qualify, book, hand off, after-hours rules, call simulator |
+| 14 | [`missed-call-textback`](https://github.com/midcityhandyman/missed-call-textback) | Bots | One text back on a missed call, with quiet hours, opt-out and no double texting |
+| 15 | [`speed-to-lead`](https://github.com/midcityhandyman/speed-to-lead) | Bots | Lead intake that validates, scores, routes and replies in under 60 seconds, with a metrics page |
+| 16 | [`topic-per-customer-bot`](https://github.com/midcityhandyman/topic-per-customer-bot) | Bots | Telegram bot pattern: one forum topic per customer, every event filed there, edits over re-sends |
+| 17 | [`review-request-engine`](https://github.com/midcityhandyman/review-request-engine) | Bots | Review asks after job close with timing, suppression rules and a sent or suppressed report |
+| 18 | [`supabase-rls-cookbook`](https://github.com/midcityhandyman/supabase-rls-cookbook) | Database | Row level security patterns for Supabase and Postgres with pgTAP tests and a grant audit |
+| 19 | [`encrypted-supabase-backups`](https://github.com/midcityhandyman/encrypted-supabase-backups) | Database | Nightly age-encrypted Postgres backups with retention and an automated restore test |
+| 20 | [`crm-migration-kit`](https://github.com/midcityhandyman/crm-migration-kit) | Database | CLI for CRM migrations: normalise, dedupe with explainable rules, map fields, validation report |
+| 21 | [`agent-dispatcher`](https://github.com/midcityhandyman/agent-dispatcher) | Agents | Lead agent decomposes a goal, workers run with fresh context, an independent verifier refutes or accepts |
+| 22 | [`agent-eval-harness`](https://github.com/midcityhandyman/agent-eval-harness) | Agents | Golden-set evals for a customer service agent with an LLM judge and CI regression gate |
+| 23 | [`cheap-first-router`](https://github.com/midcityhandyman/cheap-first-router) | Agents | Routes bulk work to a low-cost model, verifies with a strong one, reports cost and escalations |
+| 24 | [`prompt-cache-cost-lab`](https://github.com/midcityhandyman/prompt-cache-cost-lab) | Agents | Before and after cost numbers for prompt caching, batching and model choice on one workload |
+| 25 | [`codebase-scanner-cli`](https://github.com/midcityhandyman/codebase-scanner-cli) | Agents | CLI that reports a repository's structure, language mix, dead files and risky patterns |
+| 26 | [`field-service-mcp`](https://github.com/midcityhandyman/field-service-mcp) | Agents | MCP server exposing a field service system (jobs, customers, visits, quotes) to agents |
+| 27 | [`trades-skill-pack`](https://github.com/midcityhandyman/trades-skill-pack) | Agents | Claude skills for residential remodeling: scope of work, material takeoff, change orders |
+| 28 | [`same-automation-four-ways`](https://github.com/midcityhandyman/same-automation-four-ways) | Agents | One lead follow-up built in n8n, Make, Zapier and Python, compared on failure handling and upkeep |
+| 29 | [`remodel-estimator`](https://github.com/midcityhandyman/remodel-estimator) | Operations | Remodel scope in, material takeoff, labor hours and a priced estimate out, with a web UI |
+| 30 | [`scope-of-work-generator`](https://github.com/midcityhandyman/scope-of-work-generator) | Operations | Trade-by-trade scopes of work for bathroom, kitchen and basement remodels from a short intake |
+| 31 | [`change-order-tracker`](https://github.com/midcityhandyman/change-order-tracker) | Operations | Change orders from request to signed approval with an immutable audit trail |
+| 32 | [`job-costing`](https://github.com/midcityhandyman/job-costing) | Operations | Estimate against actuals by trade, margin drift and below-target job flags |
+| 33 | [`photo-to-punch-list`](https://github.com/midcityhandyman/photo-to-punch-list) | Operations | Job site photos to a punch list by room and trade using a vision model |
+| 34 | [`crew-onboarding-intake`](https://github.com/midcityhandyman/crew-onboarding-intake) | Operations | Crew and subcontractor onboarding: profile, document checklist by role, retried sync |
+| 35 | [`owner-dashboard`](https://github.com/midcityhandyman/owner-dashboard) | Operations | Next.js dashboard of the weekly numbers a service business owner runs the company from |
+| 36 | [`clickup-dry-run`](https://github.com/midcityhandyman/clickup-dry-run) | Operations | Simulates task automations against exported data before anything touches the real workspace |
+| 37 | [`ghl-home-services-blueprint`](https://github.com/midcityhandyman/ghl-home-services-blueprint) | Operations | Documented CRM blueprint for home services: pipelines, fields, workflows and a validator |
+| 38 | [`fastapi-ops-starter`](https://github.com/midcityhandyman/fastapi-ops-starter) | Operations | Slim operations API: auth, multi-source ingestion into one record table, background jobs |
+| 39 | [`brrr-deal-analyzer`](https://github.com/midcityhandyman/brrr-deal-analyzer) | Operations | Rental deal analyzer for buy, rehab, rent, refinance: cash flow, returns, DSCR and a score |
+| 40 | [`reddit-pain-miner`](https://github.com/midcityhandyman/reddit-pain-miner) | Operations | Pulls threads on a topic and ranks the pain points with short quotes |
+| 41 | [`book-pipeline`](https://github.com/midcityhandyman/book-pipeline) | Operations | Markdown manuscript to EPUB and print-ready HTML in one command |
 <!-- repo-index:end -->
 
 ## Where this pattern runs
@@ -180,7 +180,7 @@ write-up is the design with every real name, number and record removed.
 - Link checking is offline. External URLs are counted, never fetched.
 - Anchor slugs follow the common GitHub rules; unusual headings (emoji, raw
   HTML) may slug differently on the site.
-- The index rows are plain folder names, not links, until publication. The
+- The index rows link to each repository through base_url in data/repos.json. The
   one line summaries are written from this hub's point of view; each companion
   repo's own README is the authority on what it does.
 - The default run can only check names against data/repos.json. Checking them

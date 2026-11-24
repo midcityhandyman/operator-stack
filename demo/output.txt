@@ -1,6 +1,6 @@
 1. This repo
 ------------
-  OK files=7 links=31 anchors=11 external=0 mermaid=7 repos=41 issues=0
+  OK files=7 links=31 anchors=11 external=41 mermaid=7 repos=41 issues=0
 
 2. Throwaway tree with seven planted faults
 -------------------------------------------

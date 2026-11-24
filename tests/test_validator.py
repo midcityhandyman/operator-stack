@@ -305,7 +305,9 @@ class ThisRepoTests(unittest.TestCase):
             text = path.read_text(encoding="utf-8")
             self.assertNotIn(chr(0x2014), text, path.name)
             if path.suffix in {".md", ".json"}:
-                self.assertNotIn("://", text, path.name)
+                base = validate.base_url(ROOT)
+                rest = text.replace(base, "") if base else text
+                self.assertNotIn("://", rest, path.name)
 
     def test_cli_exit_codes(self):
         run = lambda *a: subprocess.run([sys.executable, str(ROOT / "scripts" / "validate.py"), *a],
