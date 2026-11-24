@@ -420,7 +420,8 @@ def write_index(root: Path) -> bool:
 
 
 def main(argv=None) -> int:
-    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap = argparse.ArgumentParser(
+        description="Validate a docs tree: links, anchors, mermaid blocks and the repo index.")
     ap.add_argument("root", nargs="?", default=str(Path(__file__).resolve().parent.parent))
     ap.add_argument("--write-index", action="store_true",
                     help="rewrite the README repo table from data/repos.json, then validate")

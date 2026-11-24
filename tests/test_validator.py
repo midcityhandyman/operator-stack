@@ -290,6 +290,14 @@ class ThisRepoTests(unittest.TestCase):
         self.assertEqual(run.returncode, 0, run.stderr.decode("utf-8", "replace"))
         self.assertEqual(run.stdout, (ROOT / "demo" / "output.txt").read_bytes())
 
+    def test_readme_excerpt_is_real_demo_output(self):
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        doc = validate.parse_markdown(readme)
+        excerpt = next(lines for _, lang, lines in doc.blocks if lang == "text")
+        self.assertGreaterEqual(len(excerpt), 10)
+        capture = (ROOT / "demo" / "output.txt").read_text(encoding="utf-8")
+        self.assertIn("\n".join(excerpt) + "\n", capture)
+
     def test_every_page_has_a_diagram(self):
         for page in ["README.md"] + sorted(p.name for p in (ROOT / "docs").glob("*.md")):
             path = ROOT / page if page == "README.md" else ROOT / "docs" / page

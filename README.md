@@ -1,24 +1,56 @@
 # operator-stack
 
-One operator, two small service companies, and a set of AI agents that do the
-routine work without losing context or acting without permission. This repo is
-the map: how the pieces fit, and where each piece lives.
+[![ci](https://github.com/midcityhandyman/operator-stack/actions/workflows/ci.yml/badge.svg)](https://github.com/midcityhandyman/operator-stack/actions/workflows/ci.yml)
 
-## The problem
+How one person runs two small service companies with AI agents doing the
+routine office work: answering leads, following up, supporting the schedule
+and keeping records. The agents remember what they were told, and nothing
+reaches a customer until a person says yes.
 
-A small operator cannot staff a back office, and AI agents on their own forget
-everything between sessions and will happily act without asking. Running real
-companies on them needs shared memory, written rules, an approval step, and a
-database that keeps the two companies apart.
+**The problem.** A small company cannot staff a back office. AI agents can do
+the work, but left alone they forget everything between sessions and act
+without asking.
 
-## What this repo does
+**The fix.** Four things around the agents: a shared memory, written rules, an
+approval step, and a database that keeps the two companies apart.
 
-- Explains the operating model in six short pages under [docs/](docs/architecture.md).
-- Indexes the 41 companion repos, each a small working example of one pattern.
-- Ships [scripts/validate.py](scripts/validate.py), a standard library checker
-  for every internal link, heading anchor and mermaid block in the repo, plus
-  the repo index table below and every repo name cited in the docs. The tests
-  and CI run it.
+**In this repo.**
+
+- Six short pages that explain the design in plain language, starting with
+  [Architecture](docs/architecture.md).
+- An [index of 41 companion repos](#repo-index), each a small working example
+  of one piece (missed call text back, approval desk, backups and so on).
+- A checker, [scripts/validate.py](scripts/validate.py), that keeps the pages
+  and the index honest. CI runs it on every push.
+
+There is no running system in this repo. It is the map; the code that does the
+work is in the companion repos.
+
+## What you will see
+
+`python demo/run_demo.py` checks this repo, then runs the checker on a small
+docs tree with seven planted faults. Real output, trimmed to the first two
+steps (the full capture is [demo/output.txt](demo/output.txt)):
+
+```text
+1. This repo
+------------
+  OK files=7 links=31 anchors=12 external=42 mermaid=7 repos=41 issues=0
+
+2. Throwaway tree with seven planted faults
+-------------------------------------------
+  README.md:3: [link-missing] link target does not exist: docs/nope.md
+  README.md:5: [index-row] 'beta-repo' is in data/repos.json but not in the README table
+  docs/guide.md:5: [anchor-missing] no heading for anchor: #teardown
+  docs/guide.md:6: [repo-ref] 'gamma-repo' looks like a repo name but is not in data/repos.json
+  docs/guide.md:10: [mermaid] unclosed '['
+  docs/guide.md:14: [mermaid] sequence diagram has no messages
+  docs/orphan.md:1: [orphan] docs page is not linked from any other page
+  FAIL files=3 links=2 anchors=2 external=0 mermaid=2 repos=2 issues=7
+```
+
+No install, no keys, no network. A test compares the demo output with the
+capture byte for byte, and checks that the lines quoted above are in it.
 
 ## Architecture
 
@@ -80,11 +112,13 @@ python scripts/validate.py
 ```
 
 That is the whole install. Python 3.10 or newer, no packages, no network, no
-keys. It prints one line per problem and exits non-zero if it finds any.
+keys. It checks every internal link, heading anchor and mermaid block, the
+repo index table, and every repo name cited in the pages. It prints one line
+per problem and exits non-zero if it finds any.
 
-When the companion folders sit next to this one, add `--siblings ..` to also
-check that the index and the folders on disk are the same 41 names. That check
-reads folder names only.
+When the companion repos are cloned next to this one under their GitHub names,
+add `--siblings ..` to also check that the index and the folders on disk are
+the same 41 names. That check reads folder names only.
 
 ## Run the tests
 
@@ -104,9 +138,9 @@ python demo/run_demo.py
 The demo validates this repo, then builds a throwaway copy of a tiny docs tree
 with seven planted faults (dead link, dead anchor, two broken diagrams, a
 repo missing from the table, a cited repo that does not exist, an orphan page)
-and shows the validator catching each one. The captured output is in
-[demo/output.txt](demo/output.txt); the script writes the same bytes on every
-platform and a test compares the two.
+and shows the validator catching each one. It then fixes the tree, regenerates
+its index table and shows a clean run. The script writes the same bytes on
+every platform.
 
 ## Repo index
 
@@ -131,10 +165,10 @@ index.
 | 9 | [`job-watchdog`](https://github.com/midcityhandyman/job-watchdog) | Jobs | Watchdog for scheduled jobs: alerts on failure and on silence past the expected interval |
 | 10 | [`stall-board`](https://github.com/midcityhandyman/stall-board) | Jobs | Work-in-flight board for a fleet of agents: flags idle, blocked and waiting-on-human tasks |
 | 11 | [`webhook-reliability-kit`](https://github.com/midcityhandyman/webhook-reliability-kit) | Jobs | Idempotency keys, outbox drain with backoff, dead letters and replay, proven by a chaos test |
-| 12 | [`n8n-workflow-library`](https://github.com/midcityhandyman/n8n-workflow-library) | Jobs | Ten production-grade n8n workflows for service businesses, each with error and dead-letter paths |
+| 12 | [`n8n-workflow-library`](https://github.com/midcityhandyman/n8n-workflow-library) | Jobs | Ten n8n workflows for service businesses, each with error and dead-letter paths |
 | 13 | [`ai-receptionist-starter`](https://github.com/midcityhandyman/ai-receptionist-starter) | Bots | Voice AI receptionist for home services: qualify, book, hand off, after-hours rules, call simulator |
 | 14 | [`missed-call-textback`](https://github.com/midcityhandyman/missed-call-textback) | Bots | One text back on a missed call, with quiet hours, opt-out and no double texting |
-| 15 | [`speed-to-lead`](https://github.com/midcityhandyman/speed-to-lead) | Bots | Lead intake that validates, scores, routes and replies in under 60 seconds, with a metrics page |
+| 15 | [`speed-to-lead`](https://github.com/midcityhandyman/speed-to-lead) | Bots | Lead intake that validates, scores, routes and replies against a 60 second target, with a metrics page |
 | 16 | [`topic-per-customer-bot`](https://github.com/midcityhandyman/topic-per-customer-bot) | Bots | Telegram bot pattern: one forum topic per customer, every event filed there, edits over re-sends |
 | 17 | [`review-request-engine`](https://github.com/midcityhandyman/review-request-engine) | Bots | Review asks after job close with timing, suppression rules and a sent or suppressed report |
 | 18 | [`supabase-rls-cookbook`](https://github.com/midcityhandyman/supabase-rls-cookbook) | Database | Row level security patterns for Supabase and Postgres with pgTAP tests and a grant audit |
@@ -174,6 +208,9 @@ write-up is the design with every real name, number and record removed.
 
 - This is documentation plus a checker. It contains no running agents, bots or
   database; those live in the companion repos.
+- Nothing here measures results. The repo holds no performance numbers, client
+  names or case studies, and the checker proves the pages are consistent, not
+  that the design works for any particular business.
 - The mermaid check is a structural lint (diagram type, direction, balanced
   brackets and blocks, at least one edge or message). It is not the real
   mermaid parser and can pass a diagram that still fails to render.

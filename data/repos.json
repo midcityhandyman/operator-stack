@@ -60,7 +60,7 @@
     {
       "name": "n8n-workflow-library",
       "area": "Jobs",
-      "summary": "Ten production-grade n8n workflows for service businesses, each with error and dead-letter paths"
+      "summary": "Ten n8n workflows for service businesses, each with error and dead-letter paths"
     },
     {
       "name": "ai-receptionist-starter",
@@ -75,7 +75,7 @@
     {
       "name": "speed-to-lead",
       "area": "Bots",
-      "summary": "Lead intake that validates, scores, routes and replies in under 60 seconds, with a metrics page"
+      "summary": "Lead intake that validates, scores, routes and replies against a 60 second target, with a metrics page"
     },
     {
       "name": "topic-per-customer-bot",
